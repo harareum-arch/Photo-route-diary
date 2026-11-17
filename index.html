@@ -968,13 +968,71 @@ input,textarea,select{font-family:inherit}
 .modal .acts{display:flex; gap:7px; margin-top:14px}
 .modal .acts .spacer{flex:1}
 
+/* ---------- 해야 할 일 ---------- */
+.tabcount{display:inline-block; margin-left:5px; font-style:normal; font-size:10.5px; font-weight:800;
+  color:#fff; background:var(--accent); border-radius:999px; padding:1px 6px; vertical-align:1px}
+.tabcount[hidden]{display:none}
+.todobox{background:var(--card); border:1px solid var(--line); border-radius:20px;
+  padding:14px 14px 12px; box-shadow:var(--shadow)}
+.todoadd{display:flex; gap:7px}
+.todoadd input{flex:1; min-width:0; border:1px solid var(--line-strong); border-radius:12px;
+  padding:9px 12px; font-size:13.5px; background:#fff; color:var(--ink)}
+.todoadd input:focus{outline:none; border-color:#e6b89f}
+.todoadd .btn{min-height:42px}
+.todolist{list-style:none; margin:11px 0 0; padding:0}
+.todo{display:flex; align-items:flex-start; gap:10px; padding:10px 2px; border-bottom:1px solid #f6eee4;
+  transition:opacity .34s ease, transform .34s ease, max-height .34s ease}
+.todo:last-child{border-bottom:0}
+.todo.done{opacity:.32; transform:translateX(7px)}
+.todo.done .ttext{text-decoration:line-through; text-decoration-thickness:1.5px; color:#a8978a}
+.tcheck{flex:0 0 auto; width:27px; height:27px; margin-top:1px; border-radius:9px;
+  border:1.8px solid #e2cdb8; background:#fffdfa; color:transparent; display:grid; place-items:center;
+  font-size:14px; font-weight:800; cursor:pointer; padding:0; transition:.15s; font-family:inherit}
+.tcheck:hover{border-color:#e0a184}
+.todo.done .tcheck{background:var(--green); border-color:var(--green); color:#fff}
+.ttext{flex:1; min-width:0; font-size:13.5px; color:var(--ink); line-height:1.5;
+  word-break:break-word; padding-top:2px}
+.tdel{flex:0 0 auto; border:0; background:transparent; color:#cbb9a9; font-size:13px; cursor:pointer;
+  width:30px; height:30px; border-radius:9px; font-family:inherit}
+.tdel:hover{background:#f9efe6; color:#b9765c}
+.todoempty{margin:16px 2px 6px; font-size:12.5px; color:#b0a091; line-height:1.75; text-align:center}
+.todofoot{margin:11px 2px 0; font-size:11px; color:#bcac9d; line-height:1.6}
+.todofoot b{color:#b07a5f}
+
+/* 통계 카드를 눌러 탭 이동 */
+.stat.tap{cursor:pointer; text-align:left; font-family:inherit}
+.stat.tap:hover{border-color:#e6c9b6; background:#fffaf4}
+
+/* ---------- 수정 모달: 직접 입력 · 지도에서 위치 찍기 ---------- */
+.pickbar{display:flex; align-items:center; gap:8px; margin:9px 0 7px; flex-wrap:wrap}
+.pickbar .state{font-size:11px; color:#a8978a}
+.pickmap{margin:0 0 10px}
+.pickmap.hide{display:none}
+.pickmap .mini{
+  height:210px; border-radius:14px; border:1px solid var(--line-strong);
+  background:#efe9e1; overflow:hidden;
+}
+.pickmap .mini .leaflet-control-attribution{font-size:9px}
+.pickpin{font-size:24px; line-height:1; transform:translateY(-1px); filter:drop-shadow(0 2px 3px rgba(60,35,20,.4))}
+.pickhint{font-size:11px; color:#9a8b7c; margin:6px 1px 0; line-height:1.5}
+.coordline{font-size:11px; color:#a8978a; margin:5px 0 0; line-height:1.5; word-break:break-all}
+.nores{display:block; padding:11px 12px; cursor:default}
+.nores b{display:block; font-size:12.5px; color:#8a6a55; margin-bottom:3px; white-space:normal}
+.nores span{display:block; font-size:11.5px; color:#9a8b7c; white-space:normal; line-height:1.55}
+.nores .noresbtns{display:flex; gap:6px; flex-wrap:wrap; margin-top:9px}
+.nores .noresbtns .btn{background:#fffaf4; border-color:#ecdccb}
+.resitem .src{display:inline-block; font-size:9.5px; font-weight:700; color:#b08a6f; background:#fdf1e7; border-radius:6px; padding:0 5px; margin-left:5px; vertical-align:1px}
+
 /* ---------- toast / busy ---------- */
 .toast{
   position:fixed; left:50%; bottom:calc(26px + env(safe-area-inset-bottom)); transform:translate(-50%,16px); z-index:1000;
   background:#3b322a; color:#fff; font-size:12.5px; font-weight:600; padding:10px 17px; border-radius:999px;
   opacity:0; pointer-events:none; transition:.24s; box-shadow:0 16px 30px -18px rgba(0,0,0,.8); max-width:88vw; text-align:center;
 }
-.toast.on{opacity:1; transform:translate(-50%,0)}
+.toast.on{opacity:1; transform:translate(-50%,0); pointer-events:auto}
+.toast .tundo{margin-left:9px; border:0; background:rgba(255,255,255,.18); color:#fff;
+  font-size:12px; font-weight:750; border-radius:999px; padding:4px 11px; cursor:pointer; font-family:inherit}
+.toast .tundo:hover{background:rgba(255,255,255,.3)}
 .dropover{
   position:fixed; inset:0; z-index:800; display:none; place-items:center;
   background:rgba(248,242,234,.86); backdrop-filter:blur(4px);
@@ -1077,6 +1135,12 @@ input,textarea,select{font-family:inherit}
   #map{height:min(62vh,460px); height:min(62dvh,460px); border-radius:17px}
   .mapnote{font-size:11px; line-height:1.5}
   .maplegend{font-size:11px; gap:10px; line-height:1.6}
+  .todobox{padding:12px 12px 10px; border-radius:17px}
+  .todoadd input{font-size:16px; padding:10px 12px; min-height:44px}
+  .todoadd .btn{min-height:44px; padding:0 15px}
+  .ttext{font-size:14px}
+  .tcheck{width:30px; height:30px; font-size:15px}
+  .tdel{width:34px; height:34px; font-size:14px}
 
   .empty{padding:30px 16px; border-radius:20px}
   .empty .steps{display:none}
@@ -1104,6 +1168,10 @@ input,textarea,select{font-family:inherit}
   .msearch .btn{min-height:44px; padding:0 14px}
   .results{max-height:32vh; max-height:32dvh}
   .resitem{padding:10px 11px}
+  .pickmap .mini{height:180px; border-radius:12px}
+  .pickbar .btn{min-height:40px; padding:7px 12px; font-size:12.5px}
+  .nores{padding:11px}
+  .nores .noresbtns .btn{flex:1 1 auto; min-height:40px}
   .resitem b{font-size:13px}
   .toast{max-width:calc(100vw - 32px); font-size:12.5px; padding:11px 16px; border-radius:16px}
 }
@@ -1125,7 +1193,7 @@ input,textarea,select{font-family:inherit}
 <div class="wrap">
 
   <div class="iostip" id="iostip" role="note">
-    <span class="txt">📲 <b>홈 화면에 추가</b>하면 앱처럼 열려요 — 사파리 아래 <b>공유</b> → <b>홈 화면에 추가</b></span>
+    <span class="txt">📲 <b>홈 화면에 추가</b>하면 앱처럼 열려요 — 사파리 <b>공유</b>(또는 하단 <b>≡</b> → <b>공유</b>) → <b>홈 화면에 추가</b></span>
     <button class="x" type="button" data-act="hideios" aria-label="안내 닫기">✕</button>
   </div>
 
@@ -1145,7 +1213,7 @@ input,textarea,select{font-family:inherit}
       <button class="btn ghost" data-act="import">⬆ 가져오기</button>
       <button class="btn ghost danger" data-act="clear">전체 지우기</button>
     </div>
-    <p class="hero-note">사진은 밖으로 전송되지 않고 이 브라우저(IndexedDB)에만 저장돼요 · 아이폰 HEIC 사진도 그대로 올릴 수 있어요 · 장소 이름은 OpenStreetMap으로 조회합니다</p>
+    <p class="hero-note">사진은 밖으로 전송되지 않고 이 브라우저(IndexedDB)에만 저장돼요 · 아이폰 HEIC 사진도 그대로 올릴 수 있어요 · 장소 이름·주소는 OpenStreetMap·Photon으로 찾고, 안 나오면 직접 입력하거나 지도에서 위치를 찍을 수 있어요</p>
     <input type="file" id="fileInput" class="vhidden" accept="image/*,.heic,.heif" multiple>
     <input type="file" id="importInput" class="vhidden" accept=".json,application/json">
   </header>
@@ -1162,38 +1230,42 @@ input,textarea,select{font-family:inherit}
       <div><b>① 날짜별 자동 정리</b>촬영일이 다른 사진은 자동으로 다른 날짜로</div>
       <div><b>② 스팟 묶기</b>90분·400m 안의 사진을 한 장소로 묶어요</div>
       <div><b>③ 메뉴·가격·후기</b>카드마다 적어 두면 그날 총 지출까지</div>
-      <div><b>④ 지도 동선</b>번호 마커와 경로선으로 한눈에</div>
+      <div><b>④ 해야 할 일</b>다음에 갈 곳·할 일을 적어 두면 앱을 열 때마다</div>
     </div>
   </section>
+
+  <div class="tabbar" id="tabbar">
+    <div class="tabs">
+      <button class="tab active" data-act="tab" data-tab="timeline">🕒 타임라인</button>
+      <button class="tab" data-act="tab" data-tab="todo">✅ 해야 할 일<i class="tabcount" id="todocount" hidden></i></button>
+    </div>
+    <span class="hint" id="tabhint"></span>
+  </div>
 
   <section id="content" style="display:none">
     <div class="datebar" id="datebar"></div>
     <div class="stats" id="stats"></div>
-    <div class="tabbar">
-      <div class="tabs">
-        <button class="tab active" data-act="tab" data-tab="timeline">🕒 타임라인</button>
-        <button class="tab" data-act="tab" data-tab="map">🗺️ 지도 동선</button>
-      </div>
-      <span class="hint" id="tabhint"></span>
-    </div>
     <div id="timelineview">
       <div class="dayhead" id="dayhead"></div>
       <div class="timeline" id="timeline"></div>
     </div>
-    <div id="mapview">
-      <div id="map"></div>
-      <div class="mapnote" id="mapnote"></div>
-      <div class="maplegend">
-        <span><i style="background:#e2694f"></i>방문 순서</span>
-        <span><i style="background:#e2694f;opacity:.5"></i>이동 경로</span>
-        <span>마커를 누르면 메뉴·가격·후기가 보여요</span>
+  </section>
+
+  <section id="todoview" style="display:none">
+    <div class="todobox">
+      <div class="todoadd">
+        <input id="todoInput" placeholder="할 일을 적어 주세요  예) 세탁소 들르기" autocomplete="off" spellcheck="false">
+        <button class="btn primary" data-act="todoadd" type="button">추가</button>
       </div>
+      <ul class="todolist" id="todoList"></ul>
+      <p class="todoempty" id="todoEmpty">아직 할 일이 없어요.<br>오늘 할 일을 하나 적어 두면 앱을 열 때마다 보여요.</p>
+      <p class="todofoot">체크하면 목록에서 사라지고, 3초 안에 <b>되돌리기</b>를 누르면 다시 생겨요.</p>
     </div>
   </section>
 
   <p class="foot">
     사진과 기록은 이 브라우저에만 저장됩니다. 기기를 바꾸거나 브라우저를 정리하기 전에 <b>백업 내보내기</b>로 JSON을 보관해 주세요.<br>
-    장소 검색·주소 조회: © OpenStreetMap contributors (Nominatim) · 지도: © OpenStreetMap
+    장소 검색·주소 조회: © OpenStreetMap contributors (Nominatim · Photon) · 지도: © OpenStreetMap
   </p>
 </div>
 
@@ -1526,24 +1598,178 @@ async function reverseGeocode(lat, lng){
   state.geoCache[key] = out;
   return out;
 }
-async function searchPlaces(q){
-  var key = 'q:' + q.trim().toLowerCase();
-  if (state.geoCache[key]) return state.geoCache[key];
+/* ---- 한국어 검색어 보정 ----
+   OSM(Nominatim·Photon)에는 한국 식당 상호나 상세 번지가 자주 없어서,
+   ① 검색어를 다듬고 ② 두 엔진을 함께 조회하고 ③ 점수로 정렬한다.
+   그래도 없으면 모달에서 직접 입력·지도 핀으로 저장하게 안내한다. */
+var PHOTON_GAP_MS = 350;
+var photonLast = 0, photonChain = Promise.resolve();
+function photonThrottle(){
+  var p = photonChain.then(function(){
+    var wait = Math.max(0, PHOTON_GAP_MS - (Date.now() - photonLast));
+    if (wait) return new Promise(function(r){ setTimeout(r, wait); });
+  }).then(function(){ photonLast = Date.now(); });
+  photonChain = p.catch(function(){});
+  return p;
+}
+function normSpace(s){ return String(s == null ? '' : s).replace(/\s+/g, ' ').trim(); }
+/* 괄호 설명·층/호수/지하·호점 같은 군더더기를 덜어낸다 ("카페 어니언(성수점) 2층" → "카페 어니언") */
+function cleanQuery(q){
+  var s = normSpace(q);
+  s = s.replace(/[\(\[\{][^\)\]\}]*[\)\]\}]/g, ' ');
+  s = s.replace(/지하\s*\d+\s*층|\d+\s*층/g, ' ');
+  s = s.replace(/\d+\s*동\s*\d+\s*호?/g, ' ');
+  s = s.replace(/\d+\s*호/g, ' ');
+  s = s.replace(/(^|\s)B\s?\d{1,2}(?=\s|$)/gi, ' ');
+  s = s.replace(/(^|\s)\d{1,2}\s?F(?=\s|$)/gi, ' ');
+  s = s.replace(/#\s*\d+/g, ' ');
+  return normSpace(s);
+}
+/* "시/도 + 도로명 + 건물번호" 꼴이면 도로명·번지를 따로 잡아 둔다 */
+function parseAddress(q){
+  var s = cleanQuery(q);
+  var m = s.match(/([가-힣]+(?:로|길)\s?\d*(?:길)?)\s+(\d+(?:-\d+)?)\s*$/);
+  if (!m) return null;
+  return { road: normSpace(m[1]).replace(/\s+/g, ''), num: m[2], prefix: s.slice(0, m.index).trim() };
+}
+/* 시도해 볼 검색어 목록 (앞에서부터) */
+function queryVariants(q){
+  var out = [], raw = normSpace(q), clean = cleanQuery(q);
+  function add(v){
+    v = normSpace(v);
+    if (v.length >= 2 && out.indexOf(v) < 0 && out.length < 5) out.push(v);
+  }
+  add(raw);
+  add(clean);
+  var toks = clean.split(' ');
+  if (toks.length > 1 && /(점|지점|본점|호점|직영점|플래그십)$/.test(toks[toks.length - 1])){
+    add(toks.slice(0, -1).join(' '));            /* 가게명 뒤 부가어 제거 */
+  }
+  var a = parseAddress(clean);
+  if (a && a.num.indexOf('-') > 0){
+    add((a.prefix ? a.prefix + ' ' : '') + a.road + ' ' + a.num.split('-')[0]);   /* 번지 앞자리로 재시도 */
+  }
+  return out;
+}
+function normTxt(s){ return String(s == null ? '' : s).toLowerCase().replace(/[\s\-_,.\(\)]/g, ''); }
+
+/* ---- Nominatim ---- */
+async function nominatimSearch(q){
   await geoThrottle();
   var url = 'https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&limit=6&accept-language=ko'
           + '&q=' + encodeURIComponent(q);
   var r = await fetch(url, { headers: { 'Accept': 'application/json' } });
   if (!r.ok) throw new Error('search ' + r.status);
   var j = await r.json();
-  var list = (Array.isArray(j) ? j : []).map(function(it){
-    var s = summarize(it, parseFloat(it.lat), parseFloat(it.lon));
+  return (Array.isArray(j) ? j : []).map(function(it){
+    var lat = parseFloat(it.lat), lng = parseFloat(it.lon);
+    if (!isFinite(lat) || !isFinite(lng)) return null;
+    var s = summarize(it, lat, lng);
+    var a = it.address || {};
     return {
-      name: s.place || String(it.display_name || '').split(',')[0],
+      name: s.place || '',
       address: s.address || it.display_name,
       display: it.display_name,
-      lat: parseFloat(it.lat), lng: parseFloat(it.lon)
+      road: a.road || a.pedestrian || a.footway || '',
+      num: a.house_number || '',
+      city: a.city || a.province || a.state || '',
+      lat: lat, lng: lng, src: 'osm'
     };
+  }).filter(Boolean);
+}
+/* ---- Photon (komoot) : 한국 도로명·건물번호에 강하다 ---- */
+async function photonSearch(q){
+  await photonThrottle();
+  var url = 'https://photon.komoot.io/api/?limit=8&q=' + encodeURIComponent(q);
+  var r = await fetch(url, { headers: { 'Accept': 'application/json' } });
+  if (!r.ok) throw new Error('photon ' + r.status);
+  var j = await r.json();
+  var feats = (j && j.features) || [];
+  return feats.map(function(f){
+    var p = f.properties || {}, c = (f.geometry && f.geometry.coordinates) || [];
+    var lng = +c[0], lat = +c[1];
+    if (!isFinite(lat) || !isFinite(lng)) return null;
+    var state = p.state || '', city = p.city || p.county || '', dist = p.district || p.locality || '';
+    var road = p.street || '', num = p.housenumber || '';
+    var parts = [state, city];
+    if (dist && dist !== city) parts.push(dist);
+    if (road) parts.push(road + (num ? ' ' + num : ''));
+    parts = parts.map(normSpace).filter(function(v, i, arr){ return v && arr.indexOf(v) === i; });
+    var addr = parts.join(' ');
+    return { name: p.name || '', address: addr, display: addr || p.name || '',
+             road: road, num: num, city: city || state, lat: lat, lng: lng, src: 'photon' };
+  }).filter(Boolean);
+}
+/* ---- 결과 점수 매기기·중복 제거 ----
+   kind 'place' = 이름이 검색어와 맞은 곳, 'addr' = 주소·도로만 맞은 위치(좌표만 반영) */
+function rankResults(items, query){
+  var clean = cleanQuery(query) || normSpace(query);
+  var addr = parseAddress(clean);
+  var nq = normTxt(clean);
+  var toks = clean.split(' ').filter(function(t){ return t.length >= 2; });
+  var seen = {}, scored = [];
+  (items || []).forEach(function(it){
+    if (!it || !isFinite(it.lat) || !isFinite(it.lng)) return;
+    var dk = normTxt(it.name) + '@' + it.lat.toFixed(5) + ',' + it.lng.toFixed(5);
+    if (seen[dk]) return;
+    seen[dk] = 1;
+    var nn = normTxt(it.name);
+    var hay = normTxt([it.name, it.road, it.num, it.address, it.display].join(' '));
+    var nameScore = 0;
+    if (nn){
+      if (nn === nq) nameScore = 9;
+      else if (nq.indexOf(nn) === 0) nameScore = 6;
+      else if (nn.indexOf(nq) >= 0) nameScore = 5;
+      else if (toks.length){
+        var nmHit = 0;
+        toks.forEach(function(t){ if (nn.indexOf(normTxt(t)) >= 0) nmHit++; });
+        nameScore = nmHit ? 2 + nmHit : 0;
+      }
+    }
+    var tokHit = 0;
+    toks.forEach(function(t){ if (hay.indexOf(normTxt(t)) >= 0) tokHit++; });
+    var tokScore = toks.length ? Math.round(4 * tokHit / toks.length) : 0;
+    var addrScore = 0;
+    if (addr && it.road && normTxt(it.road) === normTxt(addr.road)){
+      addrScore = 3;
+      if (it.num) addrScore += (it.num === addr.num || it.num.split('-')[0] === addr.num.split('-')[0]) ? 4 : 1;
+    }
+    var total = nameScore + tokScore + addrScore;
+    if (total < 3) return;
+    scored.push({ it: it, score: total, kind: nameScore > 0 ? 'place' : 'addr' });
   });
+  scored.sort(function(a, b){ return b.score - a.score; });
+  return scored.slice(0, 8).map(function(x){
+    var it = x.it;
+    it.kind = x.kind;
+    return it;
+  });
+}
+async function searchPlaces(q){
+  var key = 'q2:' + normSpace(q).toLowerCase();
+  if (state.geoCache[key]) return state.geoCache[key];
+  var variants = queryVariants(q);
+  var bag = [], tries = 0, fails = 0;
+  function safe(p){ tries++; return p.catch(function(){ fails++; return []; }); }
+  function addAll(list){ if (list && list.length) bag = bag.concat(list); }
+
+  /* 1단계: 원문으로 두 엔진을 동시에 */
+  var first = await Promise.all([safe(nominatimSearch(variants[0])), safe(photonSearch(variants[0]))]);
+  addAll(first[0]); addAll(first[1]);
+  if (variants[1]) addAll(await safe(photonSearch(variants[1])));
+  var list = rankResults(bag, q);
+
+  /* 2단계: 빈약하면 보정 검색어로 한 번 더 (Nominatim 초당 1회 제한을 지킨다) */
+  if (!list.length){
+    var retries = variants.slice(1, 3);
+    for (var i = 0; i < retries.length; i++){
+      var more = await Promise.all([safe(nominatimSearch(retries[i])), safe(photonSearch(retries[i]))]);
+      addAll(more[0]); addAll(more[1]);
+      list = rankResults(bag, q);
+      if (list.length) break;
+    }
+  }
+  if (!list.length && tries && fails === tries) throw new Error('offline');
   state.geoCache[key] = list;
   return list;
 }
@@ -1579,8 +1805,12 @@ async function fillMissingPlaces(){
 /* ============ 렌더 ============ */
 function renderAll(){
   var has = state.days.length > 0 && state.days.some(function(d){ return d.spots.length > 0; });
-  $('#empty').style.display = has ? 'none' : 'block';
-  $('#content').style.display = has ? 'block' : 'none';
+  var isTodo = (view === 'todo');
+  $('#content').style.display = (has && !isTodo) ? 'block' : 'none';
+  $('#todoview').style.display = isTodo ? 'block' : 'none';
+  $('#empty').style.display = (!has && !isTodo) ? 'block' : 'none';
+  renderTodoBadge();
+  if (isTodo){ renderTodos(); return; }
   if (!has){ return; }
   if (!selectedDate || !getDay(selectedDate)){
     var dates = state.days.map(function(d){ return d.date; }).sort();
@@ -1590,7 +1820,6 @@ function renderAll(){
   renderSummary();
   renderDay();
   renderTabHint();
-  if (view === 'map') renderMap();
 }
 function renderDatebar(){
   var days = state.days.slice().sort(function(a,b){ return b.date.localeCompare(a.date); });
@@ -1610,7 +1839,7 @@ function renderSummary(){
       '<div class="stat"><span>방문 스팟</span><b>' + t.spots + '<em>곳</em></b></div>'
     + '<div class="stat"><span>사진</span><b>' + t.photos + '<em>장</em></b></div>'
     + '<div class="stat"><span>총 지출</span><b>' + won(t.money) + '<em>원</em></b></div>'
-    + '<div class="stat"><span>총 이동</span><b>' + (t.meters >= 1000 ? (t.meters/1000).toFixed(1) + '<em>km</em>' : Math.round(t.meters) + '<em>m</em>') + '</b></div>';
+    + '<button type="button" class="stat tap" data-act="tab" data-tab="todo"><span>남은 할 일</span><b>' + remainingTodos() + '<em>개</em></b></button>';
   renderDayHead();
 }
 function renderDayHead(){
@@ -1624,8 +1853,8 @@ function renderDayHead(){
     + '<span class="spend">총 지출 ' + won(t.money) + '원</span>';
 }
 function renderTabHint(){
-  $('#tabhint').textContent = (view === 'map')
-    ? '번호는 그날 방문 순서 · 선은 이동 경로'
+  $('#tabhint').textContent = (view === 'todo')
+    ? '체크하면 목록에서 사라져요 · 3초 안에 되돌릴 수 있어요'
     : '사진을 누르면 장소·시간을 바로 고칠 수 있어요';
 }
 function renderDay(){
@@ -1685,7 +1914,6 @@ function refreshIdle(){
   var typing = ae && ae.closest && ae.closest('#timeline') && /^(INPUT|TEXTAREA)$/.test(ae.tagName);
   if (typing){ renderDatebar(); renderSummary(); return; }
   renderDatebar(); renderSummary(); renderDay();
-  if (view === 'map') renderMap();
 }
 function updateSpotLabels(spot){
   var card = document.querySelector('.spot[data-spot="' + spot.id + '"]');
@@ -1702,88 +1930,111 @@ function updateSpotLabels(spot){
   }
 }
 
-/* ============ 지도 ============ */
-var map = null, mapLayer = null;
-function initMap(){
-  if (map || typeof L === 'undefined') return;
-  map = L.map('map', { scrollWheelZoom: true });
-  map.setView([37.5665, 126.978], 11);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19, attribution: '© OpenStreetMap contributors'
-  }).addTo(map);
-  mapLayer = L.layerGroup().addTo(map);
+/* ============ 탭 · 해야 할 일 ============ */
+function todos(){ if (!Array.isArray(state.todos)) state.todos = []; return state.todos; }
+function remainingTodos(){ return todos().filter(function(t){ return !t.done; }).length; }
+function renderTodoBadge(){
+  var n = remainingTodos();
+  var badge = $('#todocount');
+  if (badge){ badge.textContent = n ? String(n) : ''; badge.hidden = !n; }
 }
-function popupHtml(s, n){
-  var h = '<div class="lft-pop"><b>' + n + '. ' + esc(s.name || '장소 미정') + '</b><br>'
-    + '<small>' + esc(hhmm(spotTime(s)) || '--:--') + ' · ' + esc(s.address || '주소 없음') + '</small>';
-  if (s.menu) h += '<br>' + esc(String(s.menu).slice(0, 70));
-  if (s.price) h += ' · <b>' + esc(s.price) + '</b>';
-  if (s.review) h += '<br><small>“' + esc(String(s.review).slice(0, 60)) + '”</small>';
-  return h + '</div>';
+function renderTodos(){
+  var list = $('#todoList');
+  if (!list) return;
+  var arr = todos().filter(function(t){ return !t.done; });
+  list.innerHTML = arr.map(function(t){
+    return '<li class="todo" data-todo="' + esc(t.id) + '">'
+      + '<button type="button" class="tcheck" data-act="tododone" data-todo="' + esc(t.id) + '" aria-label="완료로 표시"><span>✓</span></button>'
+      + '<span class="ttext">' + esc(t.text) + '</span>'
+      + '<button type="button" class="tdel" data-act="tododel" data-todo="' + esc(t.id) + '" aria-label="할 일 삭제">✕</button>'
+      + '</li>';
+  }).join('');
+  var empty = $('#todoEmpty');
+  if (empty) empty.style.display = arr.length ? 'none' : 'block';
+  renderTodoBadge();
 }
-function renderMap(){
-  if (typeof L === 'undefined' || !selectedDate) return;
-  var day = getDay(selectedDate);
-  if (!day) return;
-  initMap();
-  if (!map) return;
-  mapLayer.clearLayers();
-  var pts = dayGeoSpots(day);
-  var missing = day.spots.length - pts.length;
-  var latlngs = [];
-  pts.forEach(function(s, idx){
-    var n = idx + 1;
-    var icon = L.divIcon({
-      className: '', html: '<div class="pin' + (n === 1 ? ' first' : '') + '">' + n + '</div>',
-      iconSize: [30, 30], iconAnchor: [15, 15], popupAnchor: [0, -15]
-    });
-    var m = L.marker([s.lat, s.lng], { icon: icon, riseOnHover: true }).addTo(mapLayer);
-    m.bindPopup(popupHtml(s, n));
-    latlngs.push([s.lat, s.lng]);
-  });
-  if (latlngs.length > 1){
-    L.polyline(latlngs, { color: '#ffffff', weight: 11, opacity: 0.9, lineCap: 'round', lineJoin: 'round' }).addTo(mapLayer);
-    L.polyline(latlngs, { color: '#e2694f', weight: 5, opacity: 0.95, lineCap: 'round', lineJoin: 'round' }).addTo(mapLayer);
-  }
-  if (latlngs.length === 1){
-    map.setView(latlngs[0], 16);
-  } else if (latlngs.length > 1){
-    map.fitBounds(L.latLngBounds(latlngs).pad(0.22), { animate: false });
-  } else {
-    map.setView([37.5665, 126.978], 11);
-  }
-  var meters = dayDistance(day);
-  var note = $('#mapnote');
-  note.className = 'mapnote' + (missing ? ' warn' : '');
-  var base = latlngs.length
-    ? '번호는 그날 방문 순서예요 · 총 이동 ' + (meters >= 1000 ? (meters/1000).toFixed(1) + 'km' : Math.round(meters) + 'm')
-    : '지도에 표시할 위치가 없어요.';
-  note.textContent = missing
-    ? base + ' · 위치를 찾지 못한 스팟 ' + missing + '곳은 사진을 눌러 장소를 검색해 주세요'
-    : base;
-  setTimeout(function(){ if (map) map.invalidateSize(); }, 80);
-  /* 아이폰: 탭 전환·주소창 접힘 직후에도 지도 크기를 다시 잡아준다 */
-  setTimeout(function(){ if (map && view === 'map') map.invalidateSize(); }, 340);
+function findTodo(id){
+  var arr = todos();
+  for (var i = 0; i < arr.length; i++) if (arr[i].id === id) return { item: arr[i], index: i };
+  return null;
+}
+function addTodo(){
+  var el = $('#todoInput');
+  if (!el) return;
+  var text = String(el.value || '').replace(/\s+/g, ' ').trim();
+  if (!text){ el.focus(); return; }
+  todos().push({ id: uid(), text: text.slice(0, 200), done: false, createdAt: new Date().toISOString() });
+  el.value = '';
+  renderTodos(); renderSummary(); save();
+  el.focus();
+}
+/* 체크 → 잠깐 취소선·페이드 후 목록에서 사라지고, 3초 안에 되돌릴 수 있다 */
+function doneTodo(id){
+  var f = findTodo(id);
+  if (!f) return;
+  var item = f.item, idx = f.index, cancelled = false;
+  var li = document.querySelector('.todo[data-todo="' + id + '"]');
+  if (li) li.classList.add('done');
+  var timer = setTimeout(function(){
+    if (cancelled) return;
+    var arr = todos();
+    for (var i = 0; i < arr.length; i++) if (arr[i].id === id){ arr.splice(i, 1); break; }
+    renderTodos(); renderSummary(); save();
+  }, 560);
+  toast('할 일을 마쳤어요', 3400, { label: '되돌리기', fn: function(){
+    cancelled = true; clearTimeout(timer);
+    if (!findTodo(id)) todos().splice(Math.min(idx, todos().length), 0, item);
+    renderTodos(); renderSummary(); save();
+    toast('할 일을 되돌렸어요');
+  }});
+}
+function delTodo(id){
+  var f = findTodo(id);
+  if (!f) return;
+  todos().splice(f.index, 1);
+  renderTodos(); renderSummary(); save();
+  toast('할 일을 지웠어요', 3400, { label: '되돌리기', fn: function(){
+    if (findTodo(id)) return;
+    todos().splice(Math.min(f.index, todos().length), 0, f.item);
+    renderTodos(); renderSummary(); save();
+    toast('할 일을 되돌렸어요');
+  }});
 }
 
-/* ============ 탭 ============ */
+/* ============ 탭 전환 ============ */
 function setView(v){
-  view = v;
-  $$('.tab').forEach(function(t){ t.classList.toggle('active', t.dataset.tab === v); });
-  $('#timelineview').style.display = (v === 'timeline') ? 'block' : 'none';
-  $('#mapview').style.display = (v === 'map') ? 'block' : 'none';
+  view = (v === 'todo') ? 'todo' : 'timeline';
+  $$('.tab').forEach(function(t){ t.classList.toggle('active', t.dataset.tab === view); });
   renderTabHint();
-  if (v === 'map'){ renderMap(); }
+  renderAll();
 }
 
 /* ============ 토스트 / 확인 모달 ============ */
-var toastTimer = null;
-function toast(msg, ms){
+var toastTimer = null, toastAction = null;
+function toast(msg, ms, action){
   var t = $('#toast');
   if (!t) return;
-  t.textContent = msg;
-  t.classList.add('on');
   clearTimeout(toastTimer);
+  toastAction = null;
+  t.innerHTML = '';
+  var span = document.createElement('span');
+  span.textContent = msg;
+  t.appendChild(span);
+  if (action && action.label){
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'tundo';
+    btn.textContent = action.label;
+    toastAction = action.fn;
+    btn.addEventListener('click', function(){
+      var fn = toastAction;
+      toastAction = null;
+      t.classList.remove('on');
+      if (fn) fn();
+    });
+    t.appendChild(btn);
+  }
+  t.classList.add('on');
   var dur = (ms == null ? 2300 : ms);
   if (dur > 0) toastTimer = setTimeout(function(){ t.classList.remove('on'); }, dur);
 }
@@ -1809,68 +2060,282 @@ function confirmModal(title, body, okText){
   });
 }
 
+/* ============ 모달 안 미니맵 (지도를 눌러 위치 찍기) ============ */
+function makeMiniMap(cfg){
+  var m = null, marker = null, ready = false, visible = false, icon = null;
+  function pinIcon(){
+    if (!icon && typeof L !== 'undefined'){
+      icon = L.divIcon({ className: '', html: '<div class="pickpin">📍</div>', iconSize: [26, 34], iconAnchor: [13, 32] });
+    }
+    return icon;
+  }
+  function place(lat, lng, notify){
+    cfg.lat = lat; cfg.lng = lng;
+    if (!ready) return;
+    if (!marker){
+      marker = L.marker([lat, lng], { icon: pinIcon(), draggable: true, keyboard: false }).addTo(m);
+      marker.on('dragend', function(){
+        var ll = marker.getLatLng();
+        if (cfg.onPick) cfg.onPick(ll.lat, ll.lng);
+      });
+    } else {
+      marker.setLatLng([lat, lng]);
+    }
+    if (notify && cfg.onPick) cfg.onPick(lat, lng);
+  }
+  function build(){
+    if (m || typeof L === 'undefined' || !cfg.el) return;
+    var has = (cfg.lat != null && cfg.lng != null);
+    var start = has ? [cfg.lat, cfg.lng] : (cfg.fallback || [37.5665, 126.978]);
+    m = L.map(cfg.el, { zoomControl: true, scrollWheelZoom: false, attributionControl: true });
+    m.setView(start, has ? 17 : 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19, attribution: '© OpenStreetMap'
+    }).addTo(m);
+    m.on('click', function(e){ place(e.latlng.lat, e.latlng.lng, true); });
+    ready = true;
+    if (has) place(cfg.lat, cfg.lng, false);
+  }
+  return {
+    show: function(){
+      cfg.wrap.classList.remove('hide');
+      visible = true;
+      build();
+      if (m) setTimeout(function(){
+        try {
+          m.invalidateSize();
+          if (marker) m.panTo(marker.getLatLng());
+        } catch(e){}
+      }, 90);
+    },
+    hide: function(){ cfg.wrap.classList.add('hide'); visible = false; },
+    visible: function(){ return visible; },
+    setPoint: function(lat, lng){
+      place(lat, lng, false);
+      if (m && marker && visible){ try { m.panTo([lat, lng]); } catch(e){} }
+    },
+    invalidate: function(){ if (m){ try { m.invalidateSize(); } catch(e){} } },
+    destroy: function(){
+      if (m){ try { m.remove(); } catch(e){} }
+      m = null; marker = null; ready = false; visible = false;
+    }
+  };
+}
+
+function resultItemHtml(it, i){
+  var isAddr = it.kind === 'addr';
+  var title = isAddr ? (it.address || it.name || '이름 없는 위치') : (it.name || it.address || '이름 없는 위치');
+  var sub = '';
+  if (isAddr){ if (it.name && normTxt(it.name) !== normTxt(title)) sub = '근처: ' + it.name; }
+  else if (it.address && normTxt(it.address) !== normTxt(title)) sub = it.address;
+  var tag = isAddr ? '<i class="src">주소 위치</i>' : '';
+  return '<div class="resitem" data-i="' + i + '"><b>' + esc(title) + tag + '</b>'
+    + (sub ? '<span>' + esc(sub) + '</span>' : '') + '</div>';
+}
+function noResultHtml(){
+  return '<div class="resitem empty nores">'
+    + '<b>검색 결과가 없어요</b>'
+    + '<span>아래 <b>장소명·주소</b> 칸에 직접 입력하고 저장하거나, <b>지도에서 위치를 찍어</b> 주세요. 쓰신 글자는 그대로 저장돼요.</span>'
+    + '<div class="noresbtns">'
+    +   '<button type="button" class="btn sm" data-pick="1">📍 지도에서 위치 찍기</button>'
+    +   '<button type="button" class="btn sm ghost" data-manual="1">✍ 직접 입력할게요</button>'
+    + '</div></div>';
+}
+
+/* 검색·결과 클릭·지도 핀을 한 묶음으로 연결한다 (장소 찾기·사진 수정 모달 공용) */
+function mountPlaceTools(bg, ctx){
+  var qEl = $('.msearch input', bg), goBtn = $('.msearch .btn', bg);
+  var res = $('.results', bg), pickBtn = $('.pickToggle', bg), pickWrap = $('.pickmap', bg);
+  var hintEl = $('.pickhint', bg), coordEl = $('.coordline', bg), stateEl = $('.pickbar .state', bg);
+  var addrTouched = false, lastList = [], seq = 0;
+  var start = ctx.point ? ctx.point() : null;
+  var picker = makeMiniMap({
+    el: $('.pickmap .mini', bg), wrap: pickWrap,
+    lat: (start ? start.lat : null), lng: (start ? start.lng : null),
+    fallback: ctx.fallback, onPick: onPick
+  });
+
+  function showCoords(extra){
+    if (!coordEl) return;
+    var p = ctx.point ? ctx.point() : null;
+    if (!p || p.lat == null || p.lng == null){
+      coordEl.textContent = '아직 좌표가 없어요 — 검색하거나 지도에서 위치를 찍으면 지도 동선에도 표시돼요.';
+      return;
+    }
+    coordEl.textContent = '좌표 ' + Number(p.lat).toFixed(5) + ', ' + Number(p.lng).toFixed(5) + (extra ? ' · ' + extra : '');
+  }
+  function setBtn(){
+    if (pickBtn) pickBtn.textContent = picker.visible() ? '🗺️ 지도 접어 두기' : '📍 지도에서 위치 찍기';
+    if (stateEl) stateEl.textContent = picker.visible() ? '지도를 눌러 위치를 옮겨 보세요' : '';
+  }
+  function showPicker(){
+    picker.show();
+    setBtn();
+  }
+  function onPick(lat, lng){
+    ctx.setPoint(lat, lng);
+    showCoords('주소를 찾는 중…');
+    var my = ++seq;
+    reverseGeocode(lat, lng).then(function(g){
+      if (my !== seq) return;
+      if (g && g.address && !addrTouched) ctx.addrEl.value = g.address;
+      if (g && g.place && !ctx.nameEl.value.trim()) ctx.nameEl.value = g.place;
+      var label = (g && (g.address || g.place)) || '';
+      if (label){
+        hintEl.textContent = '📍 ' + label;
+        showCoords(label);
+      } else {
+        hintEl.textContent = '이 근처 주소를 찾지 못했어요 — 주소는 직접 입력해 주세요.';
+        showCoords('');
+      }
+    }).catch(function(){
+      if (my !== seq) return;
+      hintEl.textContent = '주소를 불러오지 못했어요 — 주소는 직접 입력해 주세요.';
+      showCoords('');
+    });
+  }
+  function renderList(list){
+    lastList = list || [];
+    if (!lastList.length){ res.innerHTML = noResultHtml(); return; }
+    res.innerHTML = lastList.map(resultItemHtml).join('');
+  }
+  async function run(){
+    var q = qEl.value.trim();
+    if (!q){ qEl.focus(); return; }
+    res.classList.remove('hide');
+    res.innerHTML = '<div class="resitem empty">찾는 중… (OpenStreetMap·Photon)</div>';
+    try {
+      renderList(await searchPlaces(q));
+    } catch(e){
+      res.innerHTML = '<div class="resitem empty nores"><b>검색에 실패했어요</b>'
+        + '<span>인터넷 연결을 확인하거나, 아래 칸에 직접 입력하고 저장하거나 지도에서 위치를 찍어 주세요.</span>'
+        + '<div class="noresbtns"><button type="button" class="btn sm" data-pick="1">📍 지도에서 위치 찍기</button></div></div>';
+    }
+  }
+  function applyResult(it){
+    ctx.setPoint(it.lat, it.lng);
+    if (it.kind === 'place'){
+      if (it.name) ctx.nameEl.value = it.name;
+      if (it.address) ctx.addrEl.value = it.address;
+      addrTouched = false;
+      hintEl.textContent = '📍 ' + (it.name || it.address || '');
+    } else {
+      /* 이름이 안 맞고 주소·도로만 맞은 경우: 좌표만 옮기고 쓰신 글자는 살린다 */
+      var typed = qEl.value.trim();
+      if (!addrTouched && typed && (parseAddress(typed) || /\d/.test(typed))){
+        ctx.addrEl.value = typed;              /* 검색창에 쓴 주소 문구 그대로 */
+      } else if (!addrTouched && it.address){
+        ctx.addrEl.value = it.address;
+      }
+      hintEl.textContent = '📍 ' + (it.address || '') + ' 위치로 좌표를 맞췄어요';
+      toast('좌표만 맞췄어요 — 쓰신 장소명·주소는 그대로 저장돼요');
+    }
+    picker.setPoint(it.lat, it.lng);
+    showCoords(it.address || '');
+    res.classList.add('hide');
+  }
+
+  res.addEventListener('click', function(e){
+    if (e.target.closest('[data-pick]')){ showPicker(); return; }
+    if (e.target.closest('[data-manual]')){
+      res.classList.add('hide');
+      (ctx.nameEl.value.trim() ? ctx.addrEl : ctx.nameEl).focus();
+      return;
+    }
+    var el = e.target.closest('[data-i]');
+    if (!el) return;
+    var it = lastList[+el.dataset.i];
+    if (it) applyResult(it);
+  });
+  if (pickBtn){
+    pickBtn.addEventListener('click', function(){
+      if (picker.visible()) picker.hide();
+      else showPicker();
+      setBtn();
+    });
+  }
+  if (goBtn) goBtn.addEventListener('click', run);
+  qEl.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); run(); } });
+  ctx.addrEl.addEventListener('input', function(){ addrTouched = true; });
+
+  setBtn();
+  showCoords('');
+  return {
+    search: function(q){ if (q != null) qEl.value = q; return run(); },
+    picker: showPicker,
+    refreshCoords: showCoords,
+    destroy: function(){ picker.destroy(); }
+  };
+}
+
 /* ============ 장소 검색 모달 ============ */
 function openSpotSearch(spotId){
   var f = findSpot(spotId);
   if (!f) return;
   var spot = f.spot;
+  var temp = { lat: spot.lat, lng: spot.lng };
+  var fallback = null;
+  if (f.day){
+    var gs = dayGeoSpots(f.day);
+    if (gs.length) fallback = [gs[0].lat, gs[0].lng];
+  }
   var bg = document.createElement('div');
   bg.className = 'modal-bg';
   bg.innerHTML = '<div class="modal" role="dialog" aria-modal="true" style="max-width:480px">'
     + '<h3>장소 찾기</h3>'
-    + '<p class="sub">OpenStreetMap에서 검색해 장소명·주소·지도 위치를 채워요 (한국어)</p>'
-    + '<div class="msearch"><input id="sq" placeholder="예) 성수 카페 어니언" value="' + esc(spot.name || '') + '">'
-    + '<button class="btn sm primary" id="sgo">검색</button></div>'
+    + '<p class="sub">이름·주소로 검색하거나 지도에서 위치를 직접 찍을 수 있어요. 검색이 안 되면 아래 칸에 그냥 써서 저장해도 돼요.</p>'
+    + '<div class="field mfield"><label>장소명</label><input id="sName" value="' + esc(spot.name || '') + '" placeholder="예) 오늘도 웃자 하남미사점" autocomplete="off" spellcheck="false"></div>'
+    + '<div class="field mfield"><label>주소</label><input id="sAddr" value="' + esc(spot.address || '') + '" placeholder="예) 하남시 검단산로 349-37" autocomplete="off" spellcheck="false"></div>'
+    + '<div class="msearch"><input id="sq" placeholder="장소·주소 검색 (예: 하남시 검단산로 349-37)" autocomplete="off" spellcheck="false"><button class="btn sm primary" id="sgo" type="button">검색</button></div>'
     + '<div class="results hide" id="sres"></div>'
-    + '<div class="acts"><span class="spacer"></span><button class="btn sm ghost" id="scancel">닫기</button></div></div>';
+    + '<div class="pickbar"><button type="button" class="btn sm pickToggle">📍 지도에서 위치 찍기</button><span class="state"></span></div>'
+    + '<div class="pickmap hide"><div class="mini"></div><div class="pickhint">지도를 움직여 원하는 곳을 누르면 핀이 찍혀요. 핀을 끌어서 옮길 수도 있어요.</div></div>'
+    + '<p class="coordline"></p>'
+    + '<div class="acts"><span class="spacer"></span>'
+    +   '<button class="btn sm ghost" id="scancel" type="button">닫기</button>'
+    +   '<button class="btn primary" id="ssave" type="button">저장</button></div>'
+    + '</div>';
   document.body.appendChild(bg);
-  var input = $('#sq', bg), res = $('#sres', bg);
-  function close(){ bg.remove(); document.removeEventListener('keydown', onKey); }
+
+  var nameEl = $('#sName', bg), addrEl = $('#sAddr', bg);
+  var tools = mountPlaceTools(bg, {
+    nameEl: nameEl, addrEl: addrEl,
+    point: function(){ return { lat: temp.lat, lng: temp.lng }; },
+    setPoint: function(lat, lng){ temp.lat = lat; temp.lng = lng; },
+    fallback: fallback
+  });
+
+  function close(){ tools.destroy(); bg.remove(); document.removeEventListener('keydown', onKey); }
   function onKey(e){ if (e.key === 'Escape') close(); }
   document.addEventListener('keydown', onKey);
   bg.addEventListener('click', function(e){ if (e.target === bg) close(); });
   $('#scancel', bg).addEventListener('click', close);
-
-  async function run(){
-    var q = input.value.trim();
-    if (!q){ input.focus(); return; }
-    res.classList.remove('hide');
-    res.innerHTML = '<div class="resitem empty">검색 중…</div>';
-    try {
-      var list = await searchPlaces(q);
-      if (!list.length){ res.innerHTML = '<div class="resitem empty">검색 결과가 없어요. 다른 이름으로 찾아보세요.</div>'; return; }
-      res.innerHTML = list.map(function(it, i){
-        return '<div class="resitem" data-i="' + i + '"><b>' + esc(it.name) + '</b><span>' + esc(it.address) + '</span></div>';
-      }).join('');
-      res.onclick = function(e){
-        var el = e.target.closest('[data-i]');
-        if (!el) return;
-        var it = list[+el.dataset.i];
-        spot.name = it.name || spot.name;
-        spot.address = it.address || spot.address;
-        spot.lat = it.lat; spot.lng = it.lng;
-        close();
-        renderAll(); save();
-        toast('장소를 설정했어요: ' + (spot.name || it.address));
-      };
-    } catch(err){
-      res.innerHTML = '<div class="resitem empty">검색에 실패했어요. 인터넷 연결을 확인해 주세요.</div>';
-    }
-  }
-  $('#sgo', bg).addEventListener('click', run);
-  input.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); run(); } });
-  setTimeout(function(){ input.focus(); if (spot.name) run(); }, 60);
+  $('#ssave', bg).addEventListener('click', function(){
+    spot.name = nameEl.value.trim();
+    spot.address = addrEl.value.trim();
+    if (temp.lat != null && temp.lng != null){ spot.lat = temp.lat; spot.lng = temp.lng; }
+    close();
+    renderAll(); save();
+    toast(spot.name || spot.address ? '장소를 저장했어요' : '장소명이나 주소를 적어 주세요');
+    fillMissingPlaces();
+  });
+  setTimeout(function(){ $('#sq', bg).focus(); }, 60);
 }
 
 /* ============ 사진 정보 수정 모달 ============ */
 function openPhotoModal(f){
   var photo = f.photo, spot = f.spot;
   var temp = {
-    lat: spot.lat, lng: spot.lng,
-    name: spot.name || '', address: spot.address || ''
+    lat: (spot.lat != null ? spot.lat : photo.lat),
+    lng: (spot.lng != null ? spot.lng : photo.lng)
   };
   var dt = photo.dt || (((f.day && f.day.date) ? f.day.date : ymd(new Date())) + 'T12:00');
   var dateVal = String(dt).slice(0,10), timeVal = hhmm(dt) || '12:00';
+  var fallback = null;
+  if (f.day){
+    var gs = dayGeoSpots(f.day);
+    if (gs.length) fallback = [gs[0].lat, gs[0].lng];
+  }
 
   var bg = document.createElement('div');
   bg.className = 'modal-bg';
@@ -1878,57 +2343,38 @@ function openPhotoModal(f){
     + '<h3>사진 정보 수정</h3>'
     + '<p class="sub">장소명·주소를 고치면 이 스팟의 모든 사진에 반영되고, 시간은 이 사진만 바뀌어요.</p>'
     + '<img class="prev" src="' + photo.src + '" alt="">'
-    + '<div class="field mfield"><label>장소명</label><input id="pName" value="' + esc(temp.name) + '" placeholder="예) 카페 어니언 성수"></div>'
-    + '<div class="field mfield"><label>주소</label><input id="pAddr" value="' + esc(temp.address) + '" placeholder="예) 서울 성동구 아차산로9길 8"></div>'
-    + '<div class="msearch"><input id="pQuery" placeholder="장소 검색 (예: 서울숲)"><button class="btn sm" id="pGo">검색</button></div>'
+    + '<div class="field mfield"><label>장소명</label><input id="pName" value="' + esc(spot.name || '') + '" placeholder="예) 오늘도 웃자 하남미사점" autocomplete="off" spellcheck="false"></div>'
+    + '<div class="field mfield"><label>주소</label><input id="pAddr" value="' + esc(spot.address || '') + '" placeholder="예) 하남시 검단산로 349-37" autocomplete="off" spellcheck="false"></div>'
+    + '<div class="msearch"><input id="pQuery" placeholder="장소·주소 검색 (예: 하남시 검단산로 349-37)" autocomplete="off" spellcheck="false"><button class="btn sm" id="pGo" type="button">검색</button></div>'
     + '<div class="results hide" id="pRes"></div>'
+    + '<div class="pickbar"><button type="button" class="btn sm pickToggle">📍 지도에서 위치 찍기</button><span class="state"></span></div>'
+    + '<div class="pickmap hide"><div class="mini"></div><div class="pickhint">지도를 움직여 원하는 곳을 누르면 핀이 찍혀요. 핀을 끌어서 옮길 수도 있어요.</div></div>'
     + '<div class="mrow">'
     +   '<div class="field mfield"><label>날짜</label><input type="date" id="pDate" value="' + esc(dateVal) + '"></div>'
     +   '<div class="field mfield"><label>시간</label><input type="time" id="pTime" value="' + esc(timeVal) + '"></div>'
     + '</div>'
-    + '<p class="sub" style="margin:2px 0 0">' + (photo.lat != null
-        ? 'GPS 좌표: ' + photo.lat.toFixed(5) + ', ' + photo.lng.toFixed(5)
-        : '이 사진에는 GPS 정보가 없어요. 위에서 장소를 검색해 주세요.') + '</p>'
+    + '<p class="coordline"></p>'
     + '<div class="acts">'
-    +   '<button class="btn sm ghost danger" id="pDel">사진 삭제</button>'
+    +   '<button class="btn sm ghost danger" id="pDel" type="button">사진 삭제</button>'
     +   '<span class="spacer"></span>'
-    +   '<button class="btn sm ghost" id="pCancel">취소</button>'
-    +   '<button class="btn primary" id="pSave">저장</button>'
+    +   '<button class="btn sm ghost" id="pCancel" type="button">취소</button>'
+    +   '<button class="btn primary" id="pSave" type="button">저장</button>'
     + '</div></div>';
   document.body.appendChild(bg);
 
   var nameEl = $('#pName', bg), addrEl = $('#pAddr', bg), dateEl = $('#pDate', bg), timeEl = $('#pTime', bg);
-  var qEl = $('#pQuery', bg), res = $('#pRes', bg);
+  var tools = mountPlaceTools(bg, {
+    nameEl: nameEl, addrEl: addrEl,
+    point: function(){ return { lat: temp.lat, lng: temp.lng }; },
+    setPoint: function(lat, lng){ temp.lat = lat; temp.lng = lng; },
+    fallback: fallback
+  });
 
-  function close(){ bg.remove(); document.removeEventListener('keydown', onKey); }
+  function close(){ tools.destroy(); bg.remove(); document.removeEventListener('keydown', onKey); }
   function onKey(e){ if (e.key === 'Escape') close(); }
   document.addEventListener('keydown', onKey);
   bg.addEventListener('click', function(e){ if (e.target === bg) close(); });
   $('#pCancel', bg).addEventListener('click', close);
-
-  $('#pGo', bg).addEventListener('click', async function(){
-    var q = qEl.value.trim(); if (!q) { qEl.focus(); return; }
-    res.classList.remove('hide');
-    res.innerHTML = '<div class="resitem empty">검색 중…</div>';
-    try {
-      var list = await searchPlaces(q);
-      if (!list.length){ res.innerHTML = '<div class="resitem empty">검색 결과가 없어요.</div>'; return; }
-      res.innerHTML = list.map(function(it, i){
-        return '<div class="resitem" data-i="' + i + '"><b>' + esc(it.name) + '</b><span>' + esc(it.address) + '</span></div>';
-      }).join('');
-      res.onclick = function(e){
-        var el = e.target.closest('[data-i]'); if (!el) return;
-        var it = list[+el.dataset.i];
-        nameEl.value = it.name || nameEl.value;
-        addrEl.value = it.address || addrEl.value;
-        temp.lat = it.lat; temp.lng = it.lng;
-        res.classList.add('hide');
-      };
-    } catch(err){
-      res.innerHTML = '<div class="resitem empty">검색에 실패했어요. 인터넷 연결을 확인해 주세요.</div>';
-    }
-  });
-  qEl.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); $('#pGo', bg).click(); } });
 
   $('#pDel', bg).addEventListener('click', async function(){
     close();
@@ -2011,11 +2457,11 @@ function mergePrev(spotId){
   toast('이전 스팟과 합쳤어요');
 }
 async function clearAll(){
-  if (!state.days.length){ toast('지울 기록이 없어요'); return; }
-  var ok = await confirmModal('모든 기록을 지울까요?', '사진 ' + totalPhotos() + '장과 모든 기록이 이 브라우저에서 사라지고 되돌릴 수 없어요. (백업 내보내기로 먼저 보관할 수 있어요)', '모두 지우기');
+  if (!state.days.length && !todos().length){ toast('지울 기록이 없어요'); return; }
+  var ok = await confirmModal('모든 기록을 지울까요?', '사진 ' + totalPhotos() + '장·기록·할 일 목록이 이 브라우저에서 사라지고 되돌릴 수 없어요. (백업 내보내기로 먼저 보관할 수 있어요)', '모두 지우기');
   if (!ok) return;
   var cache = state.geoCache;
-  state = { version: 1, days: [], geoCache: cache, updated: Date.now() };
+  state = { version: 1, days: [], geoCache: cache, todos: [], updated: Date.now() };
   selectedDate = null;
   renderAll();
   await persist();
@@ -2024,8 +2470,9 @@ async function clearAll(){
 
 /* ============ 내보내기 / 가져오기 ============ */
 function exportJSON(){
-  if (!state.days.length){ toast('내보낼 기록이 없어요'); return; }
-  var data = { app: 'photo-route-diary', version: 1, exportedAt: new Date().toISOString(), days: state.days, geoCache: state.geoCache };
+  if (!state.days.length && !todos().length){ toast('내보낼 기록이 없어요'); return; }
+  var data = { app: 'photo-route-diary', version: 2, exportedAt: new Date().toISOString(),
+               days: state.days, todos: todos(), geoCache: state.geoCache };
   var blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
   var a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -2034,6 +2481,14 @@ function exportJSON(){
   a.click();
   setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 4000);
   toast('백업 파일(JSON)을 내려받았어요');
+}
+function sanitizeTodos(list){
+  return (Array.isArray(list) ? list : []).filter(function(t){
+    return t && typeof t.text === 'string' && t.text.trim();
+  }).map(function(t){
+    return { id: String(t.id || uid()), text: String(t.text).trim().slice(0, 200),
+             done: !!t.done, createdAt: t.createdAt || '' };
+  });
 }
 function sanitizeDay(d){
   return {
@@ -2057,15 +2512,16 @@ async function importFile(file){
   var j;
   try { j = JSON.parse(text); } catch(e){ toast('JSON 형식이 아니에요'); return; }
   if (!j || !Array.isArray(j.days)){ toast('이 앱의 백업 파일이 아니에요'); return; }
-  var ok = await confirmModal('가져온 기록으로 바꿀까요?', '지금 기록(사진 ' + totalPhotos() + '장)이 지워지고 백업 파일의 기록으로 바뀝니다.', '가져오기');
+  var ok = await confirmModal('가져온 기록으로 바꿀까요?', '지금 기록(사진 ' + totalPhotos() + '장 · 할 일 ' + todos().length + '개)이 지워지고 백업 파일의 기록으로 바뀝니다.', '가져오기');
   if (!ok) return;
   state.days = j.days.map(sanitizeDay).filter(function(d){ return d.spots.length; });
+  state.todos = sanitizeTodos(j.todos);
   if (j.geoCache && typeof j.geoCache === 'object') state.geoCache = j.geoCache;
   sortDays();
   selectedDate = null;
   renderAll();
   await persist();
-  toast('백업을 가져왔어요 · 사진 ' + totalPhotos() + '장');
+  toast('백업을 가져왔어요 · 사진 ' + totalPhotos() + '장 · 할 일 ' + todos().length + '개');
 }
 
 /* ============ 업로드 ============ */
@@ -2507,6 +2963,9 @@ document.addEventListener('click', function(e){
   if (act === 'delphoto'){ delPhoto(el.dataset.photo); return; }
   if (act === 'delspot'){ delSpot(el.dataset.spot); return; }
   if (act === 'mergepre'){ mergePrev(el.dataset.spot); return; }
+  if (act === 'todoadd'){ addTodo(); return; }
+  if (act === 'tododone'){ doneTodo(el.dataset.todo); return; }
+  if (act === 'tododel'){ delTodo(el.dataset.todo); return; }
 });
 document.addEventListener('input', function(e){
   var el = e.target.closest ? e.target.closest('[data-field]') : null;
@@ -2517,11 +2976,8 @@ document.addEventListener('input', function(e){
   f.spot[field] = el.value;
   if (field === 'name'){ updateSpotLabels(f.spot); }
   if (field === 'price'){ renderSummary(); }
-  if (field === 'menu' || field === 'review'){ if (view === 'map') mapLayerClearLazy(); }
   save();
 });
-var mapDirty = null;
-function mapLayerClearLazy(){ if (view !== 'map') return; clearTimeout(mapDirty); mapDirty = setTimeout(renderMap, 700); }
 
 $('#fileInput').addEventListener('change', function(e){
   var fs = Array.prototype.slice.call(e.target.files || []);
@@ -2547,17 +3003,14 @@ window.addEventListener('drop', function(e){
   if (e.dataTransfer.files && e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
 });
 
-/* 창 크기 변경 시 지도 보정 */
-var rzTimer = null;
-function resizeMapSoon(delay){
-  clearTimeout(rzTimer);
-  rzTimer = setTimeout(function(){ if (map && view === 'map') map.invalidateSize(); }, delay || 180);
+/* 할 일 입력: 엔터로도 추가 */
+var todoInputEl = $('#todoInput');
+if (todoInputEl){
+  todoInputEl.addEventListener('keydown', function(e){
+    if (e.key === 'Enter'){ e.preventDefault(); addTodo(); }
+  });
 }
-window.addEventListener('resize', function(){ resizeMapSoon(180); });
-window.addEventListener('orientationchange', function(){ resizeMapSoon(360); });
-if (window.visualViewport){
-  try { window.visualViewport.addEventListener('resize', function(){ resizeMapSoon(120); }); } catch(e){}
-}
+
 document.addEventListener('visibilitychange', function(){
   if (document.hidden){ clearTimeout(saveTimer); if (state.days.length) persist(); }
 });
@@ -2596,6 +3049,7 @@ function hideIOSTip(){
     if (loaded && Array.isArray(loaded.days)){
       state.days = loaded.days;
       state.geoCache = loaded.geoCache || {};
+      state.todos = sanitizeTodos(loaded.todos);
       state.days.forEach(function(d){
         d.spots.forEach(function(s){
           s.id = s.id || uid();
@@ -2614,7 +3068,10 @@ function hideIOSTip(){
 window.PRD = {
   get state(){ return state; },
   get storage(){ return idbOK ? 'indexeddb' : 'localstorage'; },
-  renderMap: renderMap, setView: setView,
+  get todos(){ return todos(); },
+  setView: setView, addTodo: addTodo, doneTodo: doneTodo, delTodo: delTodo,
+  searchPlaces: searchPlaces,          /* 검색 점검용 */
+  cleanQuery: cleanQuery, queryVariants: queryVariants,
   /* HEIC 경로 점검용 */
   isHeic: function(file){ return looksLikeHeic(file); },
   toJpegSrc: function(file){ return heicToJpegSrc(file); },
